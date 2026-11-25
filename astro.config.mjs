@@ -11,6 +11,9 @@ export default defineConfig({
 
   output: 'server',
 
+  // The landing stores no per-visitor data, so skip the Cloudflare KV session binding.
+  session: false,
+
   i18n: {
     defaultLocale: 'ar',
     locales: ['ar', 'mx', 'br', 'cl', 'us'],
