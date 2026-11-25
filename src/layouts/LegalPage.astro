@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import { site } from '../config/site';
 import { legalLangFor, legalUi } from '../components/legal/lang';
+import { countries } from '../i18n/config';
 
 interface Props {
   title: string;
@@ -15,6 +16,9 @@ interface Props {
 const { title, description, updated, summary } = Astro.props;
 const country = String(Astro.params.country ?? 'ar');
 const ui = legalUi[legalLangFor(country)];
+// Same-language countries share legal copy, so the country name keeps each <title> unique.
+const countryName = countries[country as keyof typeof countries]?.name;
+const pageTitle = countryName ? `${title} | ${site.name} ${countryName}` : title;
 const breadcrumb = {
   '@type': 'BreadcrumbList',
   itemListElement: [
@@ -24,7 +28,7 @@ const breadcrumb = {
 };
 ---
 
-<Layout title={title} description={description} schema={[breadcrumb]}>
+<Layout title={pageTitle} description={description} schema={[breadcrumb]}>
   <Navbar />
   <main id='main' class='pt-28 sm:pt-32 pb-20 bg-surface min-h-svh'>
     <article class='max-w-3xl mx-auto px-4 sm:px-6'>

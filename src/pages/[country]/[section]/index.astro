@@ -19,7 +19,9 @@ const country = String(Astro.params.country);
 const u = industryUiFor(country);
 const countryName = countries[country as keyof typeof countries].name;
 const names = industriesFor(country).map(({ copy }) => copy.name.toLowerCase());
-const description = `${u.indexSubtitle} ${names.slice(0, 6).join(', ')}…`.slice(0, 158);
+const examples = names.slice(0, 6).join(', ');
+// The list starts a new sentence after the subtitle, so capitalize its first letter.
+const description = `${u.indexSubtitle} ${examples.charAt(0).toUpperCase()}${examples.slice(1)}…`.slice(0, 158);
 ---
 
 <Layout title={`${u.indexTitle} | ${site.name} ${countryName}`} description={description}>
