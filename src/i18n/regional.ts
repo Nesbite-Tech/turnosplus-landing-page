@@ -91,8 +91,10 @@ export const industriesFor = (code: string): { id: IndustryId; slug: string; cop
  * `path` is the pathname without the country prefix, e.g. "/rubros/barberias".
  */
 export const countryPathFor = (from: string, to: string, path: string) => {
-  const [, section, slug] = path.replace(/\/$/, '').split('/');
-  if (section !== industrySection[langOf(from)]) return `/${to}${path}`;
+  // Canonical URLs carry no trailing slash, so drop it before building the target.
+  const cleanPath = path.replace(/\/$/, '');
+  const [, section, slug] = cleanPath.split('/');
+  if (section !== industrySection[langOf(from)]) return `/${to}${cleanPath}`;
   if (!slug) return industriesFor(to).length > 0 ? industryIndexPath(to) : `/${to}`;
   const id = industryIds.find((candidate) => industrySlugs[candidate][langOf(from)] === slug);
   if (id && industryTables[langOf(to)][id]) return industryPath(to, id);
