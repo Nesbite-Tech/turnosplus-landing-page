@@ -11,6 +11,9 @@ export default defineConfig({
 
   output: 'server',
 
+  // Canonical URLs have no trailing slash; wrangler.jsonc serves pages the same way.
+  trailingSlash: 'never',
+
   // The landing stores no per-visitor data, so skip the Cloudflare KV session binding.
   session: false,
 
@@ -30,7 +33,8 @@ export default defineConfig({
   integrations: [
     react(),
     sitemap({
-      filter: (page) => !page.includes('/404'),
+      // Skip the 404 page and the bare root, which only redirects to a country.
+      filter: (page) => !page.includes('/404') && new URL(page).pathname !== '/',
     }),
   ],
   adapter: cloudflare({
