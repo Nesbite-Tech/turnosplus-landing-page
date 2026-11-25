@@ -31,7 +31,7 @@ export const site = {
     jurisdiction: 'República Argentina',
   },
   /** Web3Forms public access key (designed to be exposed client-side). */
-  web3formsKey: '3fde33d2-47f2-4cf1-ab21-7f97bd461f5d',
+  web3formsKey: 'fdd529f8-4baa-4f5c-abe9-510efdf77da8',
   /** Google Search Console verification token, read at build time. */
   googleSiteVerification: import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION ?? '',
 } as const;
