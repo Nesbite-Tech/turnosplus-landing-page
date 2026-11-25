@@ -5,9 +5,9 @@
 export const site = {
   name: 'TurnosPlus',
   tagline: 'Tu agenda, en orden.',
-  url: 'https://turnosplus.com',
-  appUrl: 'https://app.turnosplus.com',
-  email: 'hola@turnosplus.com',
+  url: 'https://turnosplus.app',
+  appUrl: 'https://app.turnosplus.app',
+  email: 'hola@turnosplus.app',
   instagram: 'https://instagram.com/turnosplus',
   instagramHandle: '@turnosplus',
   whatsappNumber: '5493513238509',
