@@ -10,9 +10,9 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/cloudflare": "14.4.9",
     "@astrojs/react": "7.1.1",
     "@astrojs/sitemap": "3.7.4",
-    "@astrojs/vercel": "11.0.16",
     "@fontsource/inter": "5.2.8",
     "@tailwindcss/vite": "4.1.17",
     "@types/react": "19.2.6",
@@ -28,5 +28,8 @@
     "node": ">=24.22.1 <25",
     "pnpm": ">=12.15.0"
   },
-  "packageManager": "pnpm@12.15.0"
+  "packageManager": "pnpm@12.15.0",
+  "devDependencies": {
+    "wrangler": "4.168.0"
+  }
 }

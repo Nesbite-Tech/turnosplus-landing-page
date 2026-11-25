@@ -7,7 +7,7 @@ export const onRequest = defineMiddleware((context, next) => {
   if (context.url.pathname !== '/') return next();
 
   // Geo-redirect the bare root to the visitor's country; unsupported countries get the global (English) site.
-  const geo = context.request.headers.get('x-vercel-ip-country')?.toLowerCase();
+  const geo = context.request.headers.get('cf-ipcountry')?.toLowerCase();
   const target = geo ? (supportedCountries.has(geo) ? geo : 'us') : defaultCountry;
 
   // 302: geo redirects must not be cached as permanent.

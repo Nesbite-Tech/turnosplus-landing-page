@@ -4,12 +4,15 @@ import tailwindcss from '@tailwindcss/vite';
 import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 
-import vercel from '@astrojs/vercel';
+import cloudflare from '@astrojs/cloudflare';
 
 export default defineConfig({
   site: 'https://turnosplus.com',
 
   output: 'server',
+
+  // The landing stores no per-visitor data, so skip the Cloudflare KV session binding.
+  session: false,
 
   i18n: {
     defaultLocale: 'ar',
@@ -30,7 +33,8 @@ export default defineConfig({
       filter: (page) => !page.includes('/404'),
     }),
   ],
-  adapter: vercel({
-    webAnalytics: { enabled: true },
+  adapter: cloudflare({
+    // Every image page is prerendered, so optimize with Sharp at build time only.
+    imageService: 'compile',
   }),
 });
